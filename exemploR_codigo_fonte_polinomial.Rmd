@@ -14,6 +14,21 @@ require(knitr)
 
 As atividades desenvolvidas usando o software de planilha são reproduzidos aqui utilizando a linguagem R
 
+Inicialmente será utilizada uma versão web do R para aqueles que não tem o software instalado. A aplicação web está disponível no link
+
+[https://cdn.datacamp.com/dcl-react/standalone-example.html](https://cdn.datacamp.com/dcl-react/standalone-example.html)
+
+O código fonte e demais arquivos referentes a esse material  está disponivel em:
+
+[https://github.com/extensaoedu/nivelamento2021primeiro](https://github.com/extensaoedu/nivelamento2021primeiro)
+
+
+
+
+
+
+
+
 
 # Exemplo de cálculo e gráfico para função polinomial
 
