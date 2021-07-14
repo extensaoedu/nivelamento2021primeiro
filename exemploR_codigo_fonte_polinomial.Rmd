@@ -1,0 +1,65 @@
+---
+title: "Funções polinomiais"
+author: "Nivelamento em Estatística e Matemática"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(knitr)
+```
+
+
+# Apresentação
+
+As atividades desenvolvidas usando o software de planilha são reproduzidos aqui utilizando a linguagem R
+
+
+# Exemplo de cálculo e gráfico para função polinomial
+
+No exemplo foi considerada a seguinte função polinomial:
+
+$$f(x)=x^3-2x^2+x$$
+
+e para avaliar o comportamento da função considerou-se preencher a seguinte tabela
+
+```{r}
+x <- -3:3
+vazio <- rep("",length(x))
+tabela <- data.frame(x=x, y=vazio)
+kable(tabela)
+```
+
+Para calcular os valores de y basta aplicar as operações da função polinomial sobre o conjunto de valores de x
+
+```{r}
+y <- x^3-2*x^2+x
+tabela <- data.frame(x=x,y=y)
+kable(tabela)
+```
+
+E finalmente para exibir o comportamento da função de forma gráfica tem-se:
+
+```{r}
+plot(x=tabela$x,y=tabela$y,type="l")
+```
+
+Note que o desenho da função não ficou suave devido ao pequeno número de pontos utilizados para traçar a função. Para melhorar esse aspecto e fazer com que o gráfico represente o comportamento da função de forma mais adequada pode-se criar os pontos da tabela para um conjunto maior de pontos dentro do intervalo considerado entre -3 e 3. Serão considerados os pontos: x = $(-3,0,-2,9,...,0,...,2.9,3)$ de forma que o número de pontos é dado por:
+
+```{r}
+x1 <- seq(-3,3,by=.1)
+length(x1)
+```
+ mas pode-se calcular o valor de y para esses pontos de forma simples aplicando as operações da função polinomial
+ 
+```{r}
+y1 <- x1^3-2*x1^2+x1
+```
+ 
+e observar o comportamento mais suave da função
+
+```{r}
+plot(x=x1,y=y1,type="l")
+```
+
+caso se deseje suavisar ainda mais o comportamento do gráfico, observando a variação de 0,01 entre os valores de x, como poderia ser realizado? Como exercício tente fazer as adapatções necessárias e observe o resultado.

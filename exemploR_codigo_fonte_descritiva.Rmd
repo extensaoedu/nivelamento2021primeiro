@@ -1,0 +1,65 @@
+---
+title: "Estatística descritiva com aplicação da linguagem R"
+author: "Nivelamento em Estatística e Matemática"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Apresentação
+
+As atividades desenvolvidas usando o software de planilha são reproduzidos aqui utilizando a linguagem R
+
+
+# Medidas descritivas com dados sobre covid no brasil
+
+Nesse exemplo é feita uma importação de um conjunto de dados em formato csv em que as colunas são separadas por ";". A seguir o código utilizado para importação dos dados, indicando o separador considerado e exibição das 5 primeiras linhas para conferência dos resultados obtidos.
+
+```{r}
+dados_covid <- read.csv("covid.csv",sep = ";")
+head(dados_covid,n = 5)
+```
+
+A seguir de forma simples pode-se calcular a média e a variância dos dados
+
+```{r}
+(media <- mean(dados_covid$Obitos))
+(variancia_amostral <- var(dados_covid$Obitos))
+```
+Note que o resultado para a variância obtido difere do resultado obtido utilizando-se a planilha eletrônica. A diferença está no fato que aqui a função de variância implementada por padrão considera o cálculo da variância amostral que considera uma adaptação no denominador para $(n-1)$ com o objetivo de melhorar as propriedades do estimador. A forma utilizada é dada por: 
+
+$$s^2=\frac{\sum_{i=1}^n(x_i-\bar{x})^2}{(n-1)}$$
+é simples perceber que para se obter o resultado considerando a variância populacional pode ser feito fazendo:
+```{r}
+(variancia_populacional <- var(dados_covid$Obitos)*26/27)
+```
+e como visto com a utilização da planilha eletrônica é possível fazer as contas da variância passo a passo, calculando os desvios dos valores em relação a média
+
+```{r}
+dados_covid$desvios <- dados_covid$Obitos - media
+dados_covid
+```
+
+elevando esses valores ao quadrado 
+
+```{r}
+dados_covid$desv_quadrado <- dados_covid$desvios^2
+dados_covid
+```
+note que quando os números são muito grandes para serem exibidos é utilizada a seguinte notação $$3.134146e+08=3.134146(10)^8=31341460$$
+o número é exibido com essa compactação em sua apresentação, mas os valores armazenados e disponíveis para cálculos tem grande precisão. 
+
+Finalmente realizando a soma e dividindo pelo número de termos
+
+```{r}
+sum(dados_covid$desv_quadrado)/27
+```
+
+que foi o mesmo valor obtido acima para a variância populacional
+
+```{r}
+variancia_populacional
+```
+
